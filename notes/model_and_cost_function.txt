@@ -1,0 +1,4 @@
+For regressions the most common cost function is the Squared Error Function.
+m is training set size
+h(x) is the hypothesis function
+J(0) is the cost function
