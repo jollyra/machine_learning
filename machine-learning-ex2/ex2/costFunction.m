@@ -33,12 +33,12 @@ endfor
 
 J = 1/m * J;
 
-temp1 = 1/m * sum((hypothesis - y)' * X(:,1));
-temp2 = 1/m * sum((hypothesis - y)' * X(:,2));
-temp3 = 1/m * sum((hypothesis - y)' * X(:,3));
-grad(1) = temp1;
-grad(2) = temp2;
-grad(3) = temp3;
+temp = zeros(size(grad));
+for i = 1:length(grad)
+    temp(i, 1) = 1/m * sum((hypothesis - y)' * X(:,i));
+endfor
+
+grad = temp
 
 % =============================================================
 
