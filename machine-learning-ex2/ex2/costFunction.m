@@ -20,12 +20,25 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 hypothesis = sigmoid(X * theta);
+% disp('size of hypothesis')
+% disp(size(hypothesis))
+% disp('size of y')
+% disp(size(y))
+% disp('size of X')
+% disp(size(X))
 
 for i = 1:m
     J += -y(i,1) * log(hypothesis(i,:)) - (1 - y(i,1)) * log(1 - hypothesis(i,:));
 endfor
 
 J = 1/m * J;
+
+temp1 = 1/m * sum((hypothesis - y)' * X(:,1));
+temp2 = 1/m * sum((hypothesis - y)' * X(:,2));
+temp3 = 1/m * sum((hypothesis - y)' * X(:,3));
+grad(1) = temp1;
+grad(2) = temp2;
+grad(3) = temp3;
 
 % =============================================================
 
