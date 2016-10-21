@@ -9,7 +9,6 @@ function [J, grad] = lrCostFunction(theta, X, y, lambda)
 m = length(y); % number of training examples
 
 % You need to return the following variables correctly 
-J = 0;
 grad = zeros(size(theta));
 
 % ====================== YOUR CODE HERE ======================
@@ -36,14 +35,15 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+hypothesis = sigmoid(X * theta);
+J = 0;
+J = sum(-y .* log(hypothesis) - (1 - y) .* log(1 - hypothesis));
+J = 1/m * J + (lambda / (2 * m) * sum(theta(2:end, 1).^2));
 
-
-
-
-
-
-
-
+grad = 1 / m * X' * (hypothesis - y); % unregularized gradient for logistic regression
+temp = theta;
+temp(1) = 0; % because we don't add anything (regularization) for j = 0
+grad = grad + lambda / m * temp;
 
 % =============================================================
 
