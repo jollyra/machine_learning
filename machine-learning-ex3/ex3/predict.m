@@ -21,15 +21,12 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
-
-
-
-
-
-
-
+X = [ones(m, 1) X]; % Add ones to the X data matrix
+a1 = sigmoid(X * Theta1');
+a1 = [ones(m, 1) a1]; % Add ones to the first activation matrix;
+a2 = sigmoid(a1 * Theta2');
+[pval p] = max(a2, [], 2);
 
 % =========================================================================
-
 
 end
