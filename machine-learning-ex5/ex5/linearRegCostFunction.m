@@ -24,13 +24,12 @@ cost_reg = lambda / (2 * m) * sum(theta(2:end,:) .^ 2);
 J += cost_reg;
 
 
-% don't regularize theta zero
-
-% regularize the rest of the theta parameters
+% calculate gradient for each theta
 for i = 1:length(theta)
   grad(i) = 1 / m * sum((hypothesis - y)' * X(:,i));
 endfor
 
+% regularize the rest of the theta parameters
 grad(2:end) += lambda / m * theta(2:end);
 
 % =========================================================================
