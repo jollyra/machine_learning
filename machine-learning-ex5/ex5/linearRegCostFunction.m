@@ -20,9 +20,18 @@ grad = zeros(size(theta));
 %
 hypothesis = X * theta;
 J = 1/(2 * m) * sum((hypothesis - y) .^ 2);
-reg = lambda / (2 * m) * sum(theta(2:end,:) .^ 2);
-J += reg;
+cost_reg = lambda / (2 * m) * sum(theta(2:end,:) .^ 2);
+J += cost_reg;
 
+
+% don't regularize theta zero
+
+% regularize the rest of the theta parameters
+for i = 1:length(theta)
+  grad(i) = 1 / m * sum((hypothesis - y)' * X(:,i));
+endfor
+
+grad(2:end) += lambda / m * theta(2:end);
 
 % =========================================================================
 
